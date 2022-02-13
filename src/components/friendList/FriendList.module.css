@@ -1,0 +1,51 @@
+.list {
+  width: 300px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #f3eed5;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.item:last-child {
+  margin-bottom: 20px;
+}
+
+.status {
+  margin-right: 10px;
+  height: 60px;
+  width: 15px;
+  height: 15px;
+  align-self: center;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.online {
+  background-color: green;
+}
+
+.offline {
+  background-color: red;
+}
+
+.avatar {
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.name {
+  align-self: center;
+  font-weight: 500;
+}
