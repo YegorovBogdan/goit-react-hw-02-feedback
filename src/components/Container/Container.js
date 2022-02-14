@@ -1,12 +1,17 @@
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import s from './Container.module.css';
 
-function Container({ children }) {
-  return <div className={s.container}>{children}</div>;
-}
+class Container extends Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  };
 
-Container.propTypes = {
-  children: PropTypes.node,
-};
+  render() {
+    const { children } = this.props;
+    return <div className={s.container}>{children}</div>;
+  }
+}
 
 export default Container;

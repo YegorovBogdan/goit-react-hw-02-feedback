@@ -1,31 +1,31 @@
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import s from './Statistics.module.css';
 
-function Statistics({ title, stats }) {
+
+class Statistics extends Component {
+  static propTypes = {
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
+    positivePercentage: PropTypes.number.isRequired,
+  };
+
+  render() {
+    const { good, neutral, bad, total, positivePercentage } = this.props;
     return (
-        
-         <section className={s.statistics}>
-            {title && <h2 className={s.title}>{title}</h2>}
-
-            <ul className={s.statList}>
-                {stats.map(stat => (
-                    <li className={s.list} key={stat.id}>
-                        <span className={s.label}>{stat.label}</span>
-                        <span className={s.percentage}>{stat.percentage}%</span>
-                    </li>
-                ))}
-            </ul>
-        </section>
+      <ul className={s.list}>
+        <li className={s.item}>Good: {good}</li>
+        <li className={s.item}>Neutral: {neutral}</li>
+        <li className={s.item}>Bad: {bad}</li>
+        <li className={s.item}>Total: {total}</li>
+        <li className={s.item}>Positive feedback: {positivePercentage}%</li>
+      </ul>
     );
-    
-};
-
-Statistics.propTypes = {
-    title: PropTypes.string,
-    id: PropTypes.string,
-    label: PropTypes.string,
-    percentage: PropTypes.number,
-};
+  }
+}
 
 export default Statistics;
 

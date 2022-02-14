@@ -1,37 +1,70 @@
-import Profile from './components/profile/Profile';
-import user from './data/user.json';
+import React, { Component } from 'react';
 
-import Statistics from './components/statistics/Statistics';
-import data from './data/data.json';
-
-import FriendList from './components/friendList/FriendList';
-import friends from './data/friends.json';
-
-import TransactionHistory from './components/transactions/TransactionHistory';
-import transactions from './data/transactions.json'; 
-
-import Container from './components/Container/Container';
-
-import './index.css';
+import Container from './components/Container';
+import Feedback from './components/Feedback';
+import Statistics from './components/Statistics';
+import Section from './components/Section';
+import Notification from './components/Notification';
 
 
 
-function App() {
-  return (
-    <Container>
-      <Profile
-        username={user.username}
-        tag={user.tag}
-        location={user.location}
-        avatar={user.avatar}
-        stats={user.stats}
-      />
+class App extends Component {
+  static defaultProps = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
 
-      <Statistics title="Upload stats" stats={data}/>
-      <FriendList items={friends}/>
-      <TransactionHistory items={transactions} />
-    </Container>
-  );
+  state = {
+    good: this.props.good,
+    neutral: this.props.neutral,
+    bad: this.props.bad,
+  };
+
+  handleIncrement = name => {
+    this.setState(prevState => ({ [name]: prevState[name] + 1 }));
+  };
+
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const { good, neutral, bad } = this.state;
+    return good === 0 ? 0 : Math.round((good / (good + neutral + bad)) * 100);
+  };
+
+  render() {
+    const { good, neutral, bad } = this.state;
+    const total = this.countTotalFeedback();
+    const positivePercentage = this.countPositiveFeedbackPercentage();
+    return (
+
+      <Container>
+        <Section title="Please leave feedback">
+          <Feedback
+            options={this.state}
+            onLeaveFeedback={this.handleIncrement}
+          />
+        </Section>
+        <Section title="Statistics">
+          {total === 0 ? (
+            <Notification message="There is not feedback" />
+          ) : (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={positivePercentage}
+            />
+          )}
+        </Section>
+        </Container>
+      
+    );
+  }
 }
 
 export default App;
