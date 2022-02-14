@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import s from './Statistics.module.css';
+import s from './Statistic.module.css';
 
 
-class Statistics extends Component {
+class Statistic extends Component {
   static propTypes = {
     good: PropTypes.number.isRequired,
     neutral: PropTypes.number.isRequired,
@@ -27,6 +27,6 @@ class Statistics extends Component {
   }
 }
 
-export default Statistics;
+export default Statistic;
 
 

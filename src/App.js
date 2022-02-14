@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Container from './components/Container';
 import Feedback from './components/Feedback';
-import Statistics from './components/Statistics';
+import Statistic from './components/Statistic';
 import Section from './components/Section';
 import Notification from './components/Notification';
 
@@ -48,11 +48,11 @@ class App extends Component {
             onLeaveFeedback={this.handleIncrement}
           />
         </Section>
-        <Section title="Statistics">
+        <Section title="Statistic">
           {total === 0 ? (
             <Notification message="There is not feedback" />
           ) : (
-            <Statistics
+            <Statistic
               good={good}
               neutral={neutral}
               bad={bad}
