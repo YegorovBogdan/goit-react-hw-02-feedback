@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import s from './Feedback.module.css';
 
-class Feedback extends Component {
-  static propTypes = {
-    onLeaveFeedback: PropTypes.func.isRequired,
-  };
-
-  render() {
-    const { onLeaveFeedback } = this.props;
-    return (
-      <>
+function Feedback({onLeaveFeedback}) {
+  
+  return (
+    <>
         <button
           className={s.button}
           name="good"
@@ -37,8 +32,13 @@ class Feedback extends Component {
           Bad
         </button>
       </>
-    );
-  }
-}
+  )
+
+};
+
+Feedback.propTypes = {
+    onLeaveFeedback: PropTypes.func.isRequired,
+  };
 
 export default Feedback;
+
